@@ -13,6 +13,9 @@ Maintained by [Kevin Champlin](https://github.com/kevinchamplin) — contributio
 | [`frontend-design`](frontend-design/) | Builds distinctive, production-grade frontends. Detects stack (Next.js, Laravel/Blade, plain HTML), respects existing design tokens, avoids generic AI aesthetics. |
 | [`ux-designer`](ux-designer/) | Modern UX best practices for SaaS — conversion, accessibility, interaction patterns, anti-patterns. Ships with 22 deep-reference docs covering forms, mobile, a11y, dashboards, AI UX, ethical design, and more. |
 | [`token-discipline`](token-discipline/) | Stretch Claude Code context. Seven habits (offset/limit reads, subagent delegation, piped output, TodoWrite, checkpointing, no echoing, on-demand skill bodies) to stop burning tokens on noise. Use when sessions run long or you keep hitting context/usage limits. |
+| [`lean-context`](lean-context/) | Activate strict context-saving mode mid-conversation. Drops a checkpoint summary, audits stale tool output, and locks down behavior for the rest of the session. Pairs with `token-discipline` — the latter is daily habits, this is emergency mode. |
+| [`review`](review/) | Pre-deploy security & quality review of pending changes. Scans diffs for credential leaks, SQL/XSS/command injection, IDOR, prompt-injection, debug leftovers, and `.env` commits. Reports findings with CRITICAL/WARNING/INFO severity. |
+| [`superteam`](superteam/) | Launches 7 parallel specialist agents (security, performance, UI/UX, mobile, accessibility, code quality, testing) for a full project audit. Each agent fixes what it can autonomously and reports findings. Best for "level up this project" sessions. |
 
 More skills will be added over time. PRs welcome.
 
@@ -21,10 +24,7 @@ More skills will be added over time. PRs welcome.
 ### Option 1 — install everything
 
 ```bash
-git clone https://github.com/kevinchamplin/claude-skills.git ~/claude-skills
-mkdir -p ~/.claude/skills
-cp -r ~/claude-skills/frontend-design ~/.claude/skills/
-cp -r ~/claude-skills/ux-designer    ~/.claude/skills/
+git clone https://github.com/kevinchamplin/claude-skills.git ~/claude-skills && mkdir -p ~/.claude/skills && find ~/claude-skills -mindepth 1 -maxdepth 1 -type d -not -name '.git' -exec cp -r {} ~/.claude/skills/ \;
 ```
 
 Restart your Claude Code session. The new skills will appear in the available-skills list.
@@ -42,9 +42,8 @@ curl -L https://github.com/kevinchamplin/claude-skills/archive/refs/heads/main.t
 ### Option 3 — symlink (stay in sync with `git pull`)
 
 ```bash
-git clone https://github.com/kevinchamplin/claude-skills.git ~/claude-skills
-ln -s ~/claude-skills/frontend-design ~/.claude/skills/frontend-design
-ln -s ~/claude-skills/ux-designer    ~/.claude/skills/ux-designer
+git clone https://github.com/kevinchamplin/claude-skills.git ~/claude-skills && mkdir -p ~/.claude/skills
+for dir in ~/claude-skills/*/; do ln -sfn "$dir" ~/.claude/skills/$(basename "$dir"); done
 ```
 
 `cd ~/claude-skills && git pull` to update.
