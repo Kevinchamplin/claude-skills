@@ -4,7 +4,7 @@ A growing, community-curated collection of Claude Code skills you can drop into 
 
 Skills are markdown-based capabilities that load on demand when Claude Code detects a matching task. Each folder in this repo is one self-contained skill — copy the folder into `~/.claude/skills/` and restart your session.
 
-Maintained by [Kevin Champlin](https://github.com/kevinchamplin) — contributions welcome (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+Maintained by [Kevin Champlin](https://kevinchamplin.com) — senior software engineer building production AI systems, web apps, and mobile platforms. Founder of [Champlin Enterprises](https://champlinenterprises.com). Contributions welcome (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ## Available Skills
 
@@ -83,3 +83,11 @@ Short version: add a new top-level folder with a `SKILL.md`, keep it stack-agnos
 ## License
 
 MIT — see [LICENSE](LICENSE). Use these freely in commercial and personal projects.
+
+---
+
+**About the author**
+
+[Kevin Champlin](https://kevinchamplin.com) is a senior software engineer with 20+ years shipping production systems — Fortune 100/500 work through [Champlin Enterprises](https://champlinenterprises.com), plus local businesses and open-source tools. He runs Claude Code 8+ hours a day across dozens of projects and writes about the craft at [kevinchamplin.com/blog](https://kevinchamplin.com/blog).
+
+Connect: [kevinchamplin.com](https://kevinchamplin.com) · [GitHub](https://github.com/Kevinchamplin) · [Books on Amazon](https://kevinchamplin.com/books.php)
