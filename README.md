@@ -12,6 +12,7 @@ Maintained by [Kevin Champlin](https://github.com/kevinchamplin) — contributio
 |-------|--------------|
 | [`frontend-design`](frontend-design/) | Builds distinctive, production-grade frontends. Detects stack (Next.js, Laravel/Blade, plain HTML), respects existing design tokens, avoids generic AI aesthetics. |
 | [`ux-designer`](ux-designer/) | Modern UX best practices for SaaS — conversion, accessibility, interaction patterns, anti-patterns. Ships with 22 deep-reference docs covering forms, mobile, a11y, dashboards, AI UX, ethical design, and more. |
+| [`token-discipline`](token-discipline/) | Stretch Claude Code context. Seven habits (offset/limit reads, subagent delegation, piped output, TodoWrite, checkpointing, no echoing, on-demand skill bodies) to stop burning tokens on noise. Use when sessions run long or you keep hitting context/usage limits. |
 
 More skills will be added over time. PRs welcome.
 
