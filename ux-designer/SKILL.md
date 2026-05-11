@@ -84,6 +84,7 @@ Read these on-demand when the task requires depth — don't load them all:
 - [Data visualization](references/18-data-visualization.md) — dashboards, charts
 - [Search UX](references/19-search-ux.md) — autocomplete, filtering
 - [Emotional design](references/20-emotional-design.md) — trust, delight, brand feeling
+- [Modern UI patterns & 2026 aesthetic baseline](references/23-modern-ui-patterns-2026.md) — what separates premium from AI-template work; inspiration source map by problem
 
 **Specialized (load only when relevant):**
 - [Core principles](references/01-core-principles.md) — Nielsen heuristics, Gestalt
