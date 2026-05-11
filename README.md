@@ -21,36 +21,47 @@ More skills will be added over time. PRs welcome.
 
 ## Install
 
-### Option 1 — install everything
+### One-line install (Claude Code + Claude Desktop on macOS)
+
+Paste this into a Claude Code or Claude Desktop session and let Claude run it:
+
+> **Install Kevin Champlin's Claude skills** — run `curl -fsSL https://kevinchamplin.com/skills/install.sh | bash`
+
+Or run it directly in your terminal:
 
 ```bash
-git clone https://github.com/kevinchamplin/claude-skills.git ~/claude-skills && mkdir -p ~/.claude/skills && find ~/claude-skills -mindepth 1 -maxdepth 1 -type d -not -name '.git' -exec cp -r {} ~/.claude/skills/ \;
+curl -fsSL https://kevinchamplin.com/skills/install.sh | bash
 ```
 
-Restart your Claude Code session. The new skills will appear in the available-skills list.
+That clones the repo into `~/.claude/kevin-skills-cache/`, symlinks every skill into your Claude skills directory (Code, and Desktop on macOS), and registers a SessionStart hook so the skills self-update silently every 12 hours.
 
-### Option 2 — install one skill
+- **Self-updating.** A SessionStart hook in `~/.claude/settings.json` runs `git pull` in the background each new session (max once per 12h). Push to the repo → users get it on their next session.
+- **Idempotent.** Re-run the installer any time. It re-symlinks, refreshes the hook, and pulls latest.
+- **Honest about scope.** Claude Code: one-prompt, fully automatic. Claude Desktop on macOS: same one-prompt install + manual re-run for updates (no hook system). Claude.ai web: use the manual install below.
+
+### Manual install (Claude.ai web, or if you don't want shell scripts running)
+
+Download an individual skill folder and upload it to your Claude Project as files:
 
 ```bash
-mkdir -p ~/.claude/skills
-curl -L https://github.com/kevinchamplin/claude-skills/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=1 -C ~/.claude/skills claude-skills-main/frontend-design
+curl -L https://github.com/Kevinchamplin/claude-skills/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C /tmp claude-skills-main/frontend-design
 ```
 
-(Swap `frontend-design` for any skill name in this repo.)
+(Swap `frontend-design` for any skill name in this repo.) Then attach the folder to your Claude.ai Project.
 
-### Option 3 — symlink (stay in sync with `git pull`)
-
-```bash
-git clone https://github.com/kevinchamplin/claude-skills.git ~/claude-skills && mkdir -p ~/.claude/skills
-for dir in ~/claude-skills/*/; do ln -sfn "$dir" ~/.claude/skills/$(basename "$dir"); done
-```
-
-`cd ~/claude-skills && git pull` to update.
-
-### Option 4 — project-scoped (per-repo, team-shared)
+### Project-scoped (per-repo, team-shared)
 
 Drop the folders into `<your-project>/.claude/skills/` and commit them. Anyone who clones the repo gets the same skills automatically — useful for team standards.
+
+### Uninstall
+
+```bash
+rm -rf ~/.claude/kevin-skills-cache ~/.claude/hooks/kevin-skills-update.sh
+# Then remove the corresponding SessionStart entry from ~/.claude/settings.json,
+# and delete the symlinks under ~/.claude/skills/ (and on macOS,
+# ~/Library/Application Support/Claude/skills/).
+```
 
 ## How skills work
 
