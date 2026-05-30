@@ -66,6 +66,8 @@ Forms are often where users complete their goals—signing up, checking out, sub
 - Don't rely on it for critical info
 - Disappears—users may forget what field is
 
+> **Research:** Nielsen Norman Group found that placeholder-as-label forms *increased errors and lengthened completion time across every demographic tested*, with older users and those with lower digital literacy hit hardest. The placeholder vanishes the moment a user starts typing, removing the only memory aid and forcing them to clear the field to re-read it. The fix is unambiguous: keep a visible label **above** the field at all times, and reserve the placeholder for an optional format hint (`you@example.com`).
+
 ---
 
 ## Input Types
@@ -143,6 +145,8 @@ input.addEventListener('input', () => {
   if (hasError) validate();
 });
 ```
+
+> **Research:** Inline validation **on blur** — surfacing a problem the moment a user leaves a field, rather than holding all errors until submit — is the pattern Nielsen Norman Group ties to its biggest measured win: best-practice forms (visible labels above, inline validation, minimal fields) **nearly doubled first-attempt completion** versus poorly designed equivalents. Validating on submit-only means a user fixes one error, resubmits, and discovers the next — a frustrating round-trip loop that drives abandonment.
 
 ### Error Messages
 
@@ -228,6 +232,30 @@ input.addEventListener('input', () => {
 - Use asterisk (*) for required
 - Explain asterisk at form start
 
+> **Research:** Baymard Institute testing (Edward Scott) found that *"when encountering forms where only the optional fields were marked, 32% of users had a validation error because they did not complete a required field."* The takeaway is to always mark the **minority case**: when most fields are required, label the few optional ones `(optional)` rather than asterisking everything. Marking the majority creates visual noise and trains users to ignore the indicator — so when a field is genuinely required, they miss it.
+
+---
+
+## Choosing a Selection Control
+
+For a small, fixed set of mutually exclusive options, prefer **radio buttons over a dropdown**. All options are visible at once, so the user scans rather than clicks-to-open-then-scans.
+
+```html
+<!-- ≤5 options: radios (all choices visible, no hidden interaction) -->
+<fieldset>
+  <legend>Plan</legend>
+  <label><input type="radio" name="plan" value="free" /> Free</label>
+  <label><input type="radio" name="plan" value="pro" /> Pro</label>
+  <label><input type="radio" name="plan" value="team" /> Team</label>
+</fieldset>
+
+<!-- Many options (e.g. country, state): dropdown is appropriate -->
+<label for="country">Country</label>
+<select id="country" name="country"><!-- 100+ options --></select>
+```
+
+> **Research:** CXL usability testing found radio buttons resolve a choice **about 2.5 seconds faster** than an equivalent dropdown for small option sets, because a `<select>` hides its choices behind an extra open-and-scan interaction. Use radios for roughly **≤5 options**; switch to a dropdown only when the list is long enough that showing every option becomes its own scanning burden (states, countries, currencies).
+
 ---
 
 ## Multi-Step Forms
@@ -238,6 +266,8 @@ input.addEventListener('input', () => {
 - Complex processes (checkout, applications)
 - Collecting different types of info
 - Reducing cognitive load
+
+> **Research:** Splitting into multiple steps pays off once a form exceeds roughly **6–7 fields**: chunking related fields into short screens reduces the perceived effort of any single screen and gives a clear sense of progress. Below that threshold the extra clicks of a wizard usually cost more than the single-page form they replace — so don't reach for multi-step on a short contact or login form.
 
 ### Progress Indicator
 
@@ -472,6 +502,9 @@ Avoid: Different topics side by side
 ## Sources
 
 - [Nielsen Norman Group - Form Design](https://www.nngroup.com/articles/web-form-design/)
+- [Nielsen Norman Group - Placeholders in Form Fields Are Harmful](https://www.nngroup.com/articles/form-design-placeholders/)
+- [Baymard Institute - Marking Required vs. Optional Fields](https://baymard.com/blog/required-optional-form-fields)
 - [Baymard Institute - Form Usability](https://baymard.com/blog/current-state-of-checkout-ux)
+- [CXL - Radio Buttons vs. Dropdowns](https://cxl.com/blog/radio-buttons-vs-dropdown-menus/)
 - [Luke Wroblewski - Web Form Design](https://www.lukew.com/resources/web_form_design.asp)
 - [GOV.UK Design System - Forms](https://design-system.service.gov.uk/patterns/)

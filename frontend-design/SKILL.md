@@ -55,6 +55,11 @@ Focus on:
 
 The dominant 2026 web aesthetic is **disciplined restraint** — not flashy trends. Use these as filters before shipping:
 
+**Foundations (set these first):**
+- **Build color in OKLCH, not HEX/HSL.** OKLCH is perceptually uniform — equal lightness values look equally bright across hues, gradients don't go muddy, and dark/light shades stay on-hue. It's the single biggest practical upgrade to a color workflow (see `references/design-tokens.md`).
+- **Near-neutral foundation + one disciplined accent.** The Linear/Stripe/Vercel model: neutrals dominate the screen, the brand color is the 10% splash on CTAs and emphasis — not the most-used color.
+- **The #1 AI tell is the "Tech Bro Gradient"** — a purple→blue mesh on a near-black background (the OpenAI/Anthropic/Midjourney-derived look, now everywhere on ProductHunt). Avoid it. Reach for a brand-specific gradient system and an off-black with a subtle hue (warm charcoal, deep navy) rather than `#000`.
+
 **In:**
 - Typography as structure, not decoration — coherent hierarchy on a defined scale
 - Intentional spacing on a 4/8px grid; negative space is a deliberate element
@@ -95,6 +100,15 @@ When stuck on *how* to solve a specific UI problem, look at how shipped products
 - Adding new CSS variables when existing design tokens fit
 - `'use client'` on components that don't need state/interactivity
 - Shipping a UI without checking LCP/CLS — slow = ugly in 2026
+
+## Reference docs — load on demand
+
+Four deep-dive references live in `references/`. Read the one you need when a task calls for it — don't load all four up front.
+
+- **`references/design-tokens.md`** — OKLCH color ramps, a three-tier token architecture, a ready-to-drop Tailwind v4 `@theme` block, spacing/type/radii scales, and dark-mode elevation by lightness. Load when setting up a design system or defining tokens.
+- **`references/premium-rubric.md`** — the 12-point premium filter (first-600ms, type rhythm, color discipline, layered shadows, focus rings, empty states, the signature detail) plus the named anti-AI-slop FAIL/PASS tells. Load to self-grade a build before shipping.
+- **`references/motion-library.md`** — the ease-curve catalog with exact cubic-beziers, durations-by-intent, asymmetric enter/exit rules, copy-paste patterns (hover lift, staggered reveal, modal entry, shimmer), and the `prefers-reduced-motion` block. Load when adding animation or interaction.
+- **`references/imagery-and-icons.md`** — the AVIF→WebP→JPEG `<picture>` cascade, `srcset`/`sizes` budgeting, CLS-prevention, hero preload, an icon-library comparison with `currentColor`/ARIA wiring, and OKLCH-based art direction. Load when working with images or icons.
 
 ## Implementation Notes
 

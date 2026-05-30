@@ -158,6 +158,77 @@ Design tokens are the atomic values that define visual design decisions.
 
 ---
 
+## Token Architecture: The Three-Tier Standard
+
+The token examples above show two layers, but the mature pattern — the one IBM Carbon, Material, and Salesforce Lightning all converged on — is **three tiers**. Getting this layering right is what makes theming and large refactors safe.
+
+> Concepts and architecture live here. The concrete values, OKLCH ramps, and a ready-to-use Tailwind v4 `@theme` block live in `frontend-design/references/design-tokens.md` — cross-reference that file when you need the actual numbers.
+
+### The three tiers
+
+1. **Primitive / global / reference tokens** — raw values, named by *what they are*: `blue-500: oklch(0.62 0.19 256)`, `space-4: 1rem`. These are the full palette and scales. Components never consume them directly.
+2. **Semantic / alias tokens** — map primitives to *intent*: `color-primary`, `color-text-secondary`, `color-surface-raised`, `color-border-subtle`, `color-danger`. This is the layer components reference.
+3. **Component tokens** — component-scoped: `button-primary-bg`, `input-border-focus`. Optional — don't create them until the scales beneath are stable. Over-eager component tokens are a common form of premature abstraction.
+
+```
+Primitive  →  Semantic / Alias  →  Component
+blue-500       color-primary        button-primary-bg
+gray-100       color-surface        card-bg
+red-600        color-danger         input-border-error
+```
+
+### Name for WHY, not WHAT
+
+The single most important rule: **name semantic tokens by their meaning, never by their appearance.**
+
+- `color-text-error`, **not** `color-text-red`
+- `color-surface-raised`, **not** `color-surface-white`
+- `color-border-subtle`, **not** `color-border-gray-200`
+
+Why it matters: if your error color shifts from red to a warmer crimson — or your "raised" surface goes from white to a faint tint in dark mode — a name like `color-text-red` becomes a lie you can never safely fix. A semantic name lets the *value* change without touching a single component or breaking the name's contract.
+
+This separation is exactly what makes theming (light/dark, multi-brand) and refactors safe: components reference semantic tokens, and you re-map **semantic → primitive** per theme. One indirection layer absorbs the entire variation surface.
+
+### Naming conventions
+
+- **Hierarchical dot/dash notation:** `category-concept-property-variant-state`
+  - e.g. `color-button-primary-background-hover`, `space-card-padding`, `font-heading-weight`.
+- Be **semantic, not presentational**; be specific but not over-abbreviated; stay consistent *within* a tier.
+- **Numeric lightness scales (50–950)** for grays and color ramps, so you can interpolate and reason about contrast steps (`gray-50` lightest → `gray-950` darkest).
+- For tool interoperability, follow the emerging **W3C Design Tokens Community Group** format — tokens expressed as objects with `$value` and `$type`, and aliases written as dotted references:
+
+```json
+{
+  "color": {
+    "blue": { "500": { "$value": "#3b82f6", "$type": "color" } },
+    "text": { "error": { "$value": "{color.red.600}", "$type": "color" } }
+  }
+}
+```
+
+  This is the format Style Dictionary, Figma's token tooling, and most token-transformation pipelines now target, so it travels cleanly between design and code.
+
+### Token categories to define
+
+A complete token system covers more than color. The checklist:
+
+| Category | Examples |
+|----------|----------|
+| **Color** | palette ramps, semantic surfaces/text/borders, feedback states |
+| **Typography** | family, size, weight, line-height, letter-spacing |
+| **Spacing** | the 4px/8pt scale (`space-1`…`space-12`) |
+| **Sizing** | component dimensions, max-widths, icon sizes |
+| **Radii** | `radius-sm` → `radius-full` |
+| **Borders** | widths and styles |
+| **Shadow / elevation** | layered shadow ramp |
+| **Motion** | durations + easing curves |
+| **Z-index** | named stacking layers |
+| **Breakpoints** | responsive thresholds |
+
+Define these as primitives first, then expose the ones components need through the semantic layer.
+
+---
+
 ## Component Architecture
 
 ### Anatomy of a Component

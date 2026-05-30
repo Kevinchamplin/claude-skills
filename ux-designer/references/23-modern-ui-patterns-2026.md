@@ -15,6 +15,41 @@ Concretely, that means:
 - **Motion enhances meaning.** One well-orchestrated page-load reveal beats five scattered hover micro-interactions. Animate where it teaches the user something (state change, hierarchy, transition between contexts) — not for decoration.
 - **Performance IS aesthetic.** A site that loads in 800ms with stable layout *feels* premium. LCP > 2.5s or CLS > 0.1 makes a beautiful design feel cheap. Treat Core Web Vitals as design qualities, not engineering metrics.
 
+## The differentiator in 2025/2026: human craft over AI sameness
+
+The most important shift since the last wave of templates: the design conversation is now explicitly a **backlash against AI-generated sameness**. So many sites are vibe-coded from the same defaults that the defaults themselves now read as "generated." When everything converges on one look, the only way to stand out is the part a model won't reach for on its own — **original photography, custom or distinctive type, asymmetry, texture, and a genuine point of view.**
+
+### The named tells (what "generated" looks like)
+If your design has these, it reads as template work no matter how clean it is:
+
+- **The "Tech Bro Gradient"** — a purple-to-blue mesh gradient (the OpenAI/Anthropic/Midjourney-derived look). It was distinctive on three sites and is now on every ProductHunt launch.
+- **Dark mode + one neon accent** — a pure-black surface with a single electric purple/blue glow. This is the single most over-used "premium SaaS" move of the era.
+- **The identical centered hero** — centered headline ("Reimagine the future of X"), a gradient blob behind it, and two buttons (filled + ghost). Interchangeable across a thousand sites.
+- **Template illustration** — the "suspiciously smooth," too-perfect generative-illustration style, and generic smiling-office stock.
+
+### The winners' formula
+Studying the design-led leaders — **Linear, Stripe, Vercel, Notion, Mercury** — reveals one repeatable system, executed so consistently it feels inevitable:
+
+- **High contrast** — decisive black-on-white / white-on-black, nothing muddy in between, so the eye knows instantly where to go.
+- **Whitespace as air** — more than feels necessary; the cheapest luxury.
+- **Monochrome / near-neutral foundation + ONE disciplined accent** — and the accent is used with restraint. Public examples: Stripe's "blurple" **#635BFF**, Linear's indigo **#5E6AD2** (its brand page just calls it "a subtle desaturated blue"), Raycast's red **#FF6363**.
+- **Sharp, intentional, often custom type** — this is the real moat. Vercel commissioned **Geist** (open-source, built to "echo the greatness of legendary typefaces"). Stripe commissioned **Söhne** from Klim Type Foundry. Mercury commissioned **Arcadia** and chose purple specifically to differentiate in a fintech category dominated by blue/green. Linear and Notion use **Inter** tuned to feel bespoke. **Custom or carefully-chosen type is a brand moat** — it's the cheapest signal of "a real team made this."
+- **Real product UI, not abstract decoration** — show the product working; motion that demonstrates the product's speed rather than showing off.
+- **Coherence** — every screen feels like the same person made it.
+
+### The caution that matters most
+**The dark-mode-plus-one-neon formula is now itself a cliché** — "the new 'blue for trust.'" Copying the dark-purple surface *is* the template look you're trying to escape. Take the **principles** (contrast, whitespace, restraint, custom-feeling type, real product imagery) and apply *your own* palette, neutral temperature, and type personality. A dark surface with a near-black like `#0a0a0a` and a restrained accent can be excellent — but only if it's a deliberate brand choice, not the reflex default.
+
+### Develop a distinctive identity (the 6-step anti-cliché checklist)
+1. **Define a point of view** — pick 2-3 brand adjectives ("warm, editorial, confident" vs "technical, precise, fast") and let them drive type temperature, neutral temperature, radii, and motion vibe.
+2. **Pick a non-default accent hue and an unexpected neutral temperature.** Avoid pure `#000` and the purple→blue gradient. Off-blacks with a subtle hue (navy, warm charcoal) beat `#000`.
+3. **Invest in one distinctive type choice** — a characterful display face, or a quality variable workhorse used with strong weight contrast. (Space Grotesk + Inter is one good, accessible pairing — a distinctive display face over a neutral screen workhorse.)
+4. **Commission or art-direct real imagery** — consistent grade, lighting, and treatment; build a brand-specific gradient/texture system if you use gradients, instead of the default purple→blue.
+5. **Systematize so it's consistent everywhere** (design tokens), then add **one or two signature touches** — a motion signature, a distinctive shape, a custom illustration accent.
+6. **Use AI for speed and iteration, human judgment for the final 20%** that creates character.
+
+Applying this to a real brand: don't reach for the generated defaults. Translate the *principles* through your own brand adjectives — a dark-first surface with a restrained accent, or a light-first off-white surface with a single accent, are both fine starting points as long as the accent hue, the neutral temperature, and the type are deliberate brand decisions rather than the reflex template.
+
 ## Concrete patterns by surface
 
 ### Hero sections
