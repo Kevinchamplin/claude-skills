@@ -86,10 +86,24 @@ Don't require users to re-enter information already provided in the same session
 
 | Content Type | Minimum Ratio (AA) | Enhanced (AAA) |
 |--------------|-------------------|----------------|
-| Normal text (< 18pt) | 4.5:1 | 7:1 |
-| Large text (≥ 18pt or 14pt bold) | 3:1 | 4.5:1 |
+| Normal text (< 24px, or < 18.66px bold) | 4.5:1 | 7:1 |
+| Large text (≥ 24px, or ≥ 18.66px bold) | 3:1 | 4.5:1 |
 | UI components & graphics | 3:1 | - |
 | Focus indicators | 3:1 | - |
+
+"Large text" is **≥ 24px** regular or **≥ 18.66px bold** (the px equivalents of the 18pt / 14pt-bold thresholds in the spec). Below that, normal-text ratios apply.
+
+### Non-text Contrast — 1.4.11 (AA)
+The **3:1** requirement isn't just for text. SC 1.4.11 (Non-text Contrast) applies it to anything you need to *see and operate or understand*:
+- Input borders, button boundaries, and other control edges (against the adjacent background)
+- Focus indicators and selection states
+- Icons and glyphs that convey meaning (not purely decorative ones)
+- Meaningful parts of charts and data visualizations (bars, lines, slices) where the part carries information
+
+A hairline 1px border that's only 1.5:1 against the page fails this even when the text inside the field passes 4.5:1.
+
+### WCAG Is the Floor, Not the Ceiling
+A pass of 4.52:1 is *technically* AA but still hard for some readers — treat the numbers as a minimum and give body text more headroom where you can. Going the other way, **avoid pure black on pure white (21:1)**: the maximum-contrast extreme causes haloing/visual vibration and can trigger eye strain or migraines for some users. Pair a near-black with an off-white instead of `#000` on `#fff`.
 
 ### Testing Contrast
 ```javascript
@@ -103,21 +117,27 @@ function getContrastRatio(l1, l2) {
 
 **Tools:**
 - WebAIM Contrast Checker
+- TPGi Colour Contrast Analyser (CCA) — desktop eyedropper
 - Stark (Figma plugin)
-- Chrome DevTools accessibility panel
-- axe DevTools
+- Chrome DevTools accessibility panel (inline ratios)
+- axe-core / Pa11y / Lighthouse — wire one into CI so contrast regressions fail the build automatically
 
-### Color Blindness
-Approximately 8% of men and 0.5% of women have some form of color vision deficiency.
+Low contrast is not an edge case — it's *the* most common failure on the web. The **WebAIM Million 2026 report** (analysis of the top 1,000,000 home pages) found low-contrast text below WCAG 2 AA thresholds on **83.9% of home pages**, up from 79.1% the prior year, making it the single most commonly-detected accessibility issue.
+
+### Use of Color — 1.4.1 (A)
+Color is the *most common* failure's quieter cousin: never use color as the **only** visual means of conveying information, indicating an action, or distinguishing an element. This is a Level A requirement (the floor), and it matters for color-vision deficiency, which affects roughly **1 in 12 men (~8%)** and **1 in 200 women (~0.5%)** — on the order of **300 million people worldwide**.
 
 ```
 Never rely on color alone to convey:
 - Error states (add icons, text)
 - Success/failure (add icons, patterns)
-- Required fields (add asterisks)
+- Required fields (add asterisks or "(required)")
 - Link differentiation (add underline)
-- Data visualization (add patterns, labels)
+- Data visualization (add patterns, direct labels, distinct shapes)
 ```
+
+### APCA / WCAG 3 (Emerging)
+The **Advanced Perceptual Contrast Algorithm (APCA)** under development for WCAG 3 models human perception better than the 2.x ratio (it accounts for text size, weight, and polarity rather than a single number). It's worth tracking, but it is **not yet the legal or conformance standard** — **build to WCAG 2.2 AA today** and treat APCA as a forward-looking sanity check, not a replacement.
 
 ---
 
@@ -332,9 +352,10 @@ Standard expectations:
 ## Legal Requirements
 
 ### European Accessibility Act (EAA)
-- **Effective:** June 28, 2025
-- **Applies to:** Products/services sold in EU
+- **Directive:** (EU) 2019/882 — **in force June 28, 2025**
+- **Applies to:** Products/services sold in the EU (e-commerce, banking, transport, e-books, and more)
 - **Standard:** EN 301 549 (based on WCAG 2.1 AA)
+- **Penalties:** set by each member state and can be steep — e.g., Germany's BFSG allows fines up to **€100,000 per violation or up to 4% of annual revenue**. Accessibility has moved from "nice to have" to enforceable compliance.
 
 ### Other Regulations
 - **US:** ADA, Section 508

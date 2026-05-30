@@ -25,7 +25,8 @@ UX advice should be actionable, not academic. Prioritize patterns that drive sig
 | Touch target | 44-48px min |
 | Body text | 16px+ |
 | Line length | 50-75 chars |
-| Color contrast | 4.5:1 (WCAG AA) |
+| Text contrast | 4.5:1 normal / 3:1 large (WCAG AA) |
+| Non-text contrast | 3:1 (controls, focus, icons — 1.4.11) |
 | Animation | 300-500ms |
 | Touch feedback | < 100ms |
 | Toast auto-dismiss | 4-8s |
@@ -72,9 +73,9 @@ Read these on-demand when the task requires depth — don't load them all:
 **Core (most used):**
 - [Forms and inputs](references/07-forms-and-inputs.md) — validation, field types, error handling
 - [Interaction design](references/06-interaction-design.md) — states, transitions, feedback
-- [Visual design](references/04-visual-design.md) — hierarchy, typography, color
+- [Visual design](references/04-visual-design.md) — hierarchy, typography, color; OKLCH ramps, color harmonies, modular type scale, 60-30-10
 - [Mobile UX](references/08-mobile-ux.md) — responsive, touch, native patterns
-- [Accessibility (WCAG 2.2)](references/03-accessibility.md) — compliance checklist
+- [Accessibility (WCAG 2.2)](references/03-accessibility.md) — compliance checklist; exact contrast ratios, non-text 3:1, WebAIM Million + EAA legal floor
 - [Data tables](references/21-data-tables.md) — sorting, pagination, bulk actions
 - [Performance UX](references/22-performance-ux.md) — loading, skeletons, optimistic updates
 
@@ -84,15 +85,16 @@ Read these on-demand when the task requires depth — don't load them all:
 - [Data visualization](references/18-data-visualization.md) — dashboards, charts
 - [Search UX](references/19-search-ux.md) — autocomplete, filtering
 - [Emotional design](references/20-emotional-design.md) — trust, delight, brand feeling
-- [Modern UI patterns & 2026 aesthetic baseline](references/23-modern-ui-patterns-2026.md) — what separates premium from AI-template work; inspiration source map by problem
+- [Modern UI patterns & 2026 aesthetic baseline](references/23-modern-ui-patterns-2026.md) — what separates premium from AI-template work; the anti-cliché formula (high contrast + whitespace + one disciplined accent + custom type); inspiration source map by problem
 
 **Specialized (load only when relevant):**
 - [Core principles](references/01-core-principles.md) — Nielsen heuristics, Gestalt
 - [Laws of UX](references/02-laws-of-ux.md) — Fitts, Hick, Jakob, Miller
 - [Information architecture](references/05-information-architecture.md) — navigation, hierarchy
+- [Navigation & footers](references/27-navigation-and-footers.md) — headers, sticky/shrink behavior, mega-menus, fat footers, local-SEO NAP
 - [UX writing](references/09-ux-writing.md) — microcopy, tone, error messages
 - [User research](references/10-user-research.md) — methods, testing
-- [Design systems](references/11-design-systems.md) — tokens, components, documentation
+- [Design systems](references/11-design-systems.md) — tokens, components, documentation; the three-tier token standard (primitive → semantic → component)
 - [AI UX patterns](references/14-ai-ux-patterns.md) — chat, copilots, agents
 - [Ethical design](references/15-ethical-design.md) — dark pattern avoidance
 - [Presence/awareness](references/12a-presence-awareness.md) — live cursors, avatars
